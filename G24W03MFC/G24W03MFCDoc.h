@@ -8,12 +8,18 @@
 
 class CG24W03MFCDoc : public CDocument
 {
-protected:
-	CPoint Point = CPoint(-100, -100);
-public:
-	CPoint GetPoint() { return Point; }
-	void SetPoint(CPoint p) { 
-		Point = p; 
+	protected:
+	//	CPoint Point = CPoint(-100, -100);
+		CArray<CPoint, CPoint> Points;
+	public:
+		int GetPointsCount() { return (int)Points.GetCount(); }
+		CPoint GetPoint(int index) { return Points[index]; }
+	//	void SetPoint(CPoint p) { 
+	//		Point = p; 
+	//		SetModifiedFlag();
+	//	}
+	void AddPoint(CPoint p){
+		Points.Add(p);
 		SetModifiedFlag();
 	}
 
