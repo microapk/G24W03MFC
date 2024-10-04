@@ -23,6 +23,12 @@ class CG24W03MFCDoc : public CDocument
 		SetModifiedFlag();
 	}
 
+	void RemoveLast() {
+		if (Points.GetCount() > 0) {
+			Points.RemoveAt(Points.GetCount() - 1);
+			SetModifiedFlag();
+		}
+	}
 
 
 protected: // serialization에서만 만들어집니다.
