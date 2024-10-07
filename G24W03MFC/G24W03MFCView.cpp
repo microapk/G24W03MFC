@@ -29,6 +29,7 @@ BEGIN_MESSAGE_MAP(CG24W03MFCView, CView)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CView::OnFilePrintPreview)
 	ON_WM_LBUTTONDOWN()
 	ON_WM_RBUTTONDOWN()
+	ON_WM_MOUSEMOVE() // SCREAMING 스네이크 케이스
 END_MESSAGE_MAP()
 
 // CG24W03MFCView 생성/소멸
@@ -140,4 +141,15 @@ void CG24W03MFCView::OnRButtonDown(UINT nFlags, CPoint point)
 
 
 	CView::OnRButtonDown(nFlags, point);
+}
+
+void CG24W03MFCView::OnMouseMove(UINT nFlags, CPoint point)
+{
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
+	if (nFlags & MK_LBUTTON) { // 윈도우 NFLAG를 제공 BOOL 값이라 TRUE FALSE 값으로 나눈다. 버튼을 누르고 있을 때
+		GetDocument()->AddPoint(point);
+		Invalidate();
+	}
+
+	CView::OnMouseMove(nFlags, point);
 }
